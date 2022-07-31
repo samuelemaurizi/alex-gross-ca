@@ -1,13 +1,39 @@
-body {
+@import url('https://rsms.me/inter/inter.css');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --clr-light-100: hsl(0, 0%, 100%);
+  --clr-dark-400: hsl(0, 0%, 42%);
+  --clr-dark-850: hsl(0, 0%, 7%);
+  --clr-dark-900: hsl(0, 0%, 5%);
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  color: var(--clr-light-100);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
 }
