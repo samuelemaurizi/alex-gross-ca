@@ -1,10 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
 
-// PHOSPHOR
-import { ArrowCircleRight, ArrowLeft } from 'phosphor-react';
+import FormContext from '../context/multistepForm/formContext';
+
+// COMPONENTS
+import NextPrevBtns from '../UI/NextPrevBtns';
 
 const UsernameScreen = () => {
+  const formContext = useContext(FormContext);
+  const { userData, setUserData } = formContext;
+
+  const [formData, setFormData] = useState({
+    userName: '',
+  });
+  const { userName } = formData;
+
+  useEffect(() => {
+    if (userData) {
+      setFormData(userData);
+    }
+  }, [userData]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleNext = () => {
+    setUserData(formData);
+  };
+
   return (
     <div className='card'>
       <h4 className='card__subtitle'>who are you?</h4>
@@ -13,22 +36,13 @@ const UsernameScreen = () => {
       <input
         id='username'
         type='text'
-        placeholder='Full Name'
-        name='username'
-        required={true}
-        // minLength={2}
+        placeholder={userName || 'Full Name'}
+        name='userName'
+        autoFocus
+        onChange={handleChange}
       />
 
-      <div className='btn-container'>
-        <Link to='/step1' className='btn btn-next'>
-          next
-          <ArrowCircleRight size={20} weight='bold' />
-        </Link>
-        <Link to='/' className='btn'>
-          <ArrowLeft size={20} weight='bold' />
-          back
-        </Link>
-      </div>
+      <NextPrevBtns handleNext={handleNext} nextTo='/step1' prevTo='/' />
     </div>
   );
 };
