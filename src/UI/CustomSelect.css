@@ -1,0 +1,129 @@
+details {
+  width: 100%;
+}
+
+details[open] {
+  z-index: 1;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+summary {
+  position: relative;
+  padding-block: 0.5rem;
+  padding-inline: clamp(0.7rem, 4vw, 1.5rem);
+  cursor: pointer;
+  background-color: var(--clr-dark-900);
+  list-style: none;
+  border: 2px solid var(--clr-light-100);
+  line-height: 1;
+}
+
+summary > * {
+  color: var(--clr-light-100);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:after {
+  --size: 0.35rem;
+  content: '';
+  position: absolute;
+  display: inline-block;
+  right: clamp(0.5rem, 2vw, 1rem);
+  top: clamp(55%, 3vh, 50%);
+  border-top: var(--size) solid currentColor;
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  transform: translate(-50%, -50%);
+}
+
+summary:focus {
+  outline: none;
+}
+
+ul {
+  width: 100%;
+  background: var(--clr-dark-900);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--clr-light-100);
+  border-top: none;
+  list-style: none;
+  overflow-y: auto;
+  font-size: clamp(0.75rem, 3.5vw, 1rem);
+}
+
+li {
+  padding: 0.35rem;
+}
+
+li:first-child {
+  padding-top: 0;
+}
+
+li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+summary.radios {
+  counter-reset: radios;
+}
+
+summary.radios:before {
+  content: var(--selection);
+}
+
+.radio-select {
+  counter-increment: radios;
+  appearance: none;
+  display: none;
+}
+
+.radio-select:checked {
+  display: inline;
+  --display: block;
+}
+
+.radio-select:after {
+  content: attr(title);
+  display: inline;
+  font-size: clamp(0.75rem, 3.5vw, 1rem);
+}
+
+ul.list {
+  counter-reset: labels;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+label span {
+  --display: none;
+  display: var(--display);
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #727272;
+  border-radius: 3px;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0.8);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

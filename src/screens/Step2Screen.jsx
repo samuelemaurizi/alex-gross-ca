@@ -10,23 +10,42 @@ const Step2Screen = () => {
   const { userData, setUserData, addScore } = formContext;
 
   const [score, setScore] = useState(0);
-  const [formData, setFormData] = useState({
-    options: {},
+  const [formData, setFormData] = useState({});
+  const [checkboxesChecked, setCheckboxesChecked] = useState({
+    option1: false,
+    option2: false,
+    option3: false,
   });
-  const { options } = formData;
 
   useEffect(() => {
     if (userData) {
       setFormData(userData);
+      if (userData.options) {
+        setCheckboxesChecked(userData.options);
+      }
     }
   }, [userData]);
 
   const handleChange = (e) => {
-    setScore((prevScore) => (prevScore += +e.target.value));
-    setFormData((prevData) => ({
-      ...formData,
-      options: { ...prevData.options, [e.target.name]: e.target.id },
-    }));
+    setCheckboxesChecked({
+      ...checkboxesChecked,
+      [e.target.name]: e.target.checked,
+    });
+
+    if (e.currentTarget.checked) {
+      setScore((prevScore) => (prevScore += +e.target.value));
+      setFormData((prevData) => ({
+        ...formData,
+        options: { ...prevData.options, [e.target.name]: e.target.id },
+      }));
+    } else {
+      setScore((prevScore) => (prevScore -= +e.target.value));
+
+      const copy = { ...formData };
+      delete copy.options[e.target.name];
+
+      setFormData(copy);
+    }
   };
 
   const handleNext = () => {
@@ -41,49 +60,43 @@ const Step2Screen = () => {
 
       <div className='radio-btn__container'>
         <div>
-          <input
-            type='checkbox'
-            name='option1'
-            value='2'
-            id='option1'
-            onChange={handleChange}
-            checked={
-              options !== undefined && options.option1 === 'option1'
-                ? true
-                : false
-            }
-          />
-          <label htmlFor='option-1'>Option 1</label>
+          <label className='form-control'>
+            <input
+              type='checkbox'
+              name='option1'
+              value='2'
+              id='option1'
+              onChange={handleChange}
+              checked={checkboxesChecked.option1 || false}
+            />
+            Option 1
+          </label>
         </div>
         <div>
-          <input
-            type='checkbox'
-            name='option2'
-            value='2'
-            id='option2'
-            onChange={handleChange}
-            checked={
-              options !== undefined && options.option2 === 'option2'
-                ? true
-                : false
-            }
-          />
-          <label htmlFor='option-2'>Option 2</label>
+          <label className='form-control'>
+            <input
+              type='checkbox'
+              name='option2'
+              value='2'
+              id='option2'
+              onChange={handleChange}
+              checked={checkboxesChecked.option2 || false}
+            />
+            Option 2
+          </label>
         </div>
         <div>
-          <input
-            type='checkbox'
-            name='option3'
-            value='2'
-            id='option3'
-            onChange={handleChange}
-            checked={
-              options !== undefined && options.option3 === 'option3'
-                ? true
-                : false
-            }
-          />
-          <label htmlFor='option-3'>Option 3</label>
+          <label className='form-control'>
+            <input
+              type='checkbox'
+              name='option3'
+              value='2'
+              id='option3'
+              onChange={handleChange}
+              checked={checkboxesChecked.option3 || false}
+            />
+            Option 3
+          </label>
         </div>
       </div>
 

@@ -40,6 +40,7 @@ const UsernameScreen = () => {
         name='userName'
         autoFocus
         onChange={handleChange}
+        className='mt3'
       />
 
       <NextPrevBtns handleNext={handleNext} nextTo='/step1' prevTo='/' />

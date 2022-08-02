@@ -40,37 +40,46 @@ const Step1Screen = () => {
 
       <div className='radio-btn__container'>
         <div>
-          <input
-            type='radio'
-            name='websiteVisits'
-            value='5'
-            id='often'
-            checked={active === 5 || websiteVisits === 'often'}
-            onChange={handleChange}
-          />
-          <label htmlFor='often5'>Often</label>
+          <label className='form-control'>
+            <input
+              className='radio-btn'
+              type='radio'
+              name='websiteVisits'
+              value='5'
+              id='often'
+              checked={active === 5 || websiteVisits === 'often'}
+              onChange={handleChange}
+            />
+            Often
+          </label>
         </div>
         <div>
-          <input
-            type='radio'
-            name='websiteVisits'
-            value='3'
-            id='rarely'
-            checked={active === 3 || websiteVisits === 'rarely'}
-            onChange={handleChange}
-          />
-          <label htmlFor='rarely3'>Rarely</label>
+          <label className='form-control'>
+            <input
+              className='radio-btn'
+              type='radio'
+              name='websiteVisits'
+              value='3'
+              id='rarely'
+              checked={active === 3 || websiteVisits === 'rarely'}
+              onChange={handleChange}
+            />
+            Rarely
+          </label>
         </div>
         <div>
-          <input
-            type='radio'
-            name='websiteVisits'
-            value='0'
-            id='never'
-            checked={active === 0 || websiteVisits === 'never'}
-            onChange={handleChange}
-          />
-          <label htmlFor='never0'>Never</label>
+          <label className='form-control'>
+            <input
+              className='radio-btn'
+              type='radio'
+              name='websiteVisits'
+              value='0'
+              id='never'
+              checked={active === 0 || websiteVisits === 'never'}
+              onChange={handleChange}
+            />
+            Never
+          </label>
         </div>
       </div>
 
