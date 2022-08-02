@@ -1,3 +1,5 @@
+[![Generic badge](https://img.shields.io/badge/author-Samuele-green)]
+
 # Multi-Step Form Coding Assignment
 
 ### Description
